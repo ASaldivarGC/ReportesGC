@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Report Selector</title>
+    <link rel="icon" href="Imagenes/logo.png" type="image/x-icon"> <!-- Favicon -->
+    <style>
+        body {
+            background-color: #f0f0f0; /* Light gray background */
+            color: #333333; /* Dark gray text */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100%;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            border-bottom: 2px solid #ff9800; /* Orange border */
+        }
+        .logo {
+            height: 80px; /* Adjust size as needed */
+            margin-right: 300px;
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #ff9800; /* Orange color for headings */
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 2px solid #ff9800; /* Orange border */
+            border-radius: 5px;
+            width: 100%;
+            max-width: 600px; /* Limit the width of the dropdown */
+        }
+        #report-container {
+            width: 100%;
+            height: 85vh; /* Adjust height as needed */
+            background-color: #ffffff; /* White background for the report container */
+            border: 2px solid #ff9800; /* Orange border */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Ensure content doesn't overflow */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .footer {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #333333; /* Dark gray background */
+            color: #ffffff; /* White text */
+            text-align: center;
+            border-top: 2px solid #ff9800; /* Orange border */
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="Imagenes/Consultee.jpg" alt="Company Logo" class="logo">
+        <h1>Selecciona un Reporte</h1>
+    </div>
+    <div class="container">
+        <select id="report-selector" onchange="displayReport()">
+            <option value="">Selecciona un reporte</option>
+            <option value="https://app.powerbi.com/reportEmbed?reportId=798a14ca-d049-4a31-81bf-3e49bcab3204&autoAuth=true&ctid=b1859a93-3919-4bbe-ac79-fd3f662b0437">Ventas</option>
+            <option value="https://app.powerbi.com/reportEmbed?reportId=177abe79-384d-4481-b8e6-0867d50d7542&autoAuth=true&ctid=b1859a93-3919-4bbe-ac79-fd3f662b0437">Tickets Sistemas</option>
+            <option value="https://app.powerbi.com/reportEmbed?reportId=4949e3ac-757d-47df-95c0-ea9559be0309&autoAuth=true&ctid=b1859a93-3919-4bbe-ac79-fd3f662b0437">Proyectos</option>
+            <option value="https://app.powerbi.com/reportEmbed?reportId=your_report_id_2&groupId=your_group_id"></option>
+            <option value="https://app.powerbi.com/reportEmbed?reportId=your_report_id_2&groupId=your_group_id"></option>
+            <option value="https://app.powerbi.com/reportEmbed?reportId=your_report_id_2&groupId=your_group_id"></option>
+            <!-- Add more options as needed -->
+        </select>
+        <div id="report-container"></div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Grupo Consulte. Hecho por: <a href="mailto:asaldivar@grupoconsulte.com.mx" style="color: #ff9800;">asaldivar@grupoconsulte.com.mx</a></p>
+    </div>
+
+    <script>
+        function displayReport() {
+            const selectedValue = document.getElementById('report-selector').value;
+            const reportContainer = document.getElementById('report-container');
+            if (selectedValue) {
+                reportContainer.innerHTML = `<iframe src="${selectedValue}" frameborder="0" allowFullScreen="true"></iframe>`;
+            } else {
+                reportContainer.innerHTML = '';
+            }
+        }
+    </script>
+</body>
+</html>
