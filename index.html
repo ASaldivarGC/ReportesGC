@@ -20,6 +20,7 @@
         }
         .header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             width: 100%;
             padding: 10px 20px;
@@ -27,9 +28,22 @@
             background-color: #ffffff;
             border-bottom: 2px solid #ff9800; /* borde Naranja */
         }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
         .logo {
             height: 80px;
-            margin-right: 300px;
+        }
+        .title-container {
+    
+    width: 60%;
+}
+
+        h1 {
+            color: #ff9800; /* Título color naranja */
+            margin: 0;
+            
         }
         .container {
             text-align: center;
@@ -39,9 +53,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-        h1 {
-            color: #ff9800; /* Título color naranja */
         }
         select {
             padding: 10px;
@@ -99,12 +110,30 @@
             color: #ffffff;
             cursor: pointer;
         }
+        .logout-button {
+    position: absolute;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff9800;
+    color: #ffffff;
+    cursor: pointer;
+    display: none; /* Oculto inicialmente */
+}
+
     </style>
 </head>
 <body>
     <div class="header">
-        <img src="Imagenes/Consultee.jpg" alt="Company Logo" class="logo">
-        <h1>Selecciona un Reporte</h1>
+        <div class="logo-container">
+            <img src="Imagenes/Consultee.jpg" alt="Company Logo" class="logo">
+        </div>
+        <div class="title-container">
+            <h1>Selecciona un Reporte</h1>
+        </div>
+        <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
     </div>
     <div class="container">
         <div class="login-container">
@@ -147,6 +176,7 @@
                 loggedInUser = username;
                 document.querySelector('.login-container').style.display = 'none';
                 document.getElementById('report-selector').style.display = 'block';
+                document.querySelector('.logout-button').style.display = 'block'; // Mostrar botón de cerrar sesión
                 updateReportSelector();
             } else {
                 alert('Usuario o contraseña incorrectos');
@@ -157,6 +187,10 @@
             if (event.key === 'Enter') {
                 login();
             }
+        }
+
+        function logout() {
+            location.reload();
         }
 
         function updateReportSelector() {
