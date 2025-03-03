@@ -12,7 +12,7 @@
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -36,6 +36,9 @@
             width: 100%;
             padding: 20px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         h1 {
             color: #ff9800; /* Título color naranja */
@@ -51,7 +54,7 @@
         }
         #report-container {
             width: 100%;
-            height: 85vh; 
+            height: 85vh;
             background-color: #ffffff; /* fondo blanco para los reportes */
             border: 2px solid #ff9800; /* borde Naranja */
             border-radius: 10px;
@@ -72,6 +75,30 @@
             border-top: 2px solid #ff9800; /* borde naranja */
             box-sizing: border-box;
         }
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 2px solid #ff9800; /* Borde Naranja */
+            border-radius: 5px;
+            width: 100%;
+            max-width: 300px;
+        }
+        .login-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff9800;
+            color: #ffffff;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -80,7 +107,12 @@
         <h1>Selecciona un Reporte</h1>
     </div>
     <div class="container">
-        <select id="report-selector" onchange="displayReport()">
+        <div class="login-container">
+            <input type="text" id="username" placeholder="Usuario" onkeydown="handleKeyDown(event)">
+            <input type="password" id="password" placeholder="Contraseña" onkeydown="handleKeyDown(event)">
+            <button onclick="login()">Iniciar Sesión</button>
+        </div>
+        <select id="report-selector" onchange="displayReport()" style="display: none;">
             <option value="">Selecciona un reporte</option>
             <option value="https://app.powerbi.com/view?r=eyJrIjoiMzkyZmY4YmQtOWI2MS00NzIwLWExYjQtMDdkZjM3MGM2ZDAxIiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9">Ventas</option>
             <option value="https://app.powerbi.com/view?r=eyJrIjoiOGI3ZWFkYzYtNzY2ZS00YTI0LTk1MzUtZDQwODgzOGM0MGI0IiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9">Tickets Sistemas</option>
@@ -90,13 +122,65 @@
             <option value="https://app.powerbi.com/reportEmbed?reportId=your_report_id_2&groupId=your_group_id"></option>
             <!-- Agregar conforme se vayan necesitando -->
         </select>
-        <div id="report-container"></div>
+        <div id="report-container" style="display: none;"></div>
     </div>
     <div class="footer">
         <p>2025 Grupo Consulte. Hecho por el Departamento de Sistemas. <a href="https://forms.office.com/pages/responsepage.aspx?id=k5qFsRk5vkusef0_ZisENyWZPsX_oa9JjBwbl01mOIlUQjVQOElJWjE2OVZERFFMWDZFOFhJVDAwRS4u&route=shorturl" target="_blank" style="color: #ff9800;">Reportar Problemas</a></p>
     </div>
 
     <script>
+        const users = {
+            "Sistemas": { password: "123", reports: [1] },
+            "Proyectos": { password: "159753", reports: [0, 1, 2] },
+            "Ventas": { password: "ventas147", reports: [0] },
+            "Marketing": { password: "marketing", reports: [0, 2] },
+            "Admin": { password: "Admin", reports: [0, 1, 2, 3, 4, 5] }
+        };
+
+        let loggedInUser = null;
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (users[username] && users[username].password === password) {
+                loggedInUser = username;
+                document.querySelector('.login-container').style.display = 'none';
+                document.getElementById('report-selector').style.display = 'block';
+                updateReportSelector();
+            } else {
+                alert('Usuario o contraseña incorrectos');
+            }
+        }
+
+        function handleKeyDown(event) {
+            if (event.key === 'Enter') {
+                login();
+            }
+        }
+
+        function updateReportSelector() {
+            const reportSelector = document.getElementById('report-selector');
+            reportSelector.innerHTML = '<option value="">Selecciona un reporte</option>';
+            const userReports = users[loggedInUser].reports;
+            const allReports = [
+                { name: "Ventas", url: "https://app.powerbi.com/view?r=eyJrIjoiMzkyZmY4YmQtOWI2MS00NzIwLWExYjQtMDdkZjM3MGM2ZDAxIiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" },
+                { name: "Tickets Sistemas", url: "https://app.powerbi.com/view?r=eyJrIjoiOGI3ZWFkYzYtNzY2ZS00YTI0LTk1MzUtZDQwODgzOGM0MGI0IiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" },
+                { name: "Proyectos", url: "https://app.powerbi.com/view?r=eyJrIjoiZTk5ODI4OWUtNWJlMS00YjBmLTlkMmEtOTBlYWYyNjBjYmExIiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" },
+                { name: "", url:""},
+                { name: "", url:""},
+                { name: "", url:""}
+            ];
+            userReports.forEach(index => {
+                const report = allReports[index];
+                const option = document.createElement('option');
+                option.value = report.url;
+                option.textContent = report.name;
+                reportSelector.appendChild(option);
+            });
+            document.getElementById('report-container').style.display = 'block';
+        }
+
         function displayReport() {
             const selectedValue = document.getElementById('report-selector').value;
             const reportContainer = document.getElementById('report-container');
