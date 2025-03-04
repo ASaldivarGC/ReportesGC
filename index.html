@@ -174,11 +174,10 @@ iframe {
 
     <script>
         const users = {
-            "Sistemas": { password: "123", reports: [1, 2] },
-            "Admin": { password: "admin", reports: [0, 1, 2] },
-            "Ventas": { password: "ventas", reports: [0] },
-            "Marketing": { password: "marketing", reports: [0, 2] },
-            "Desarrollo": { password: "dev", reports: [1, 2] }
+            "Sistemas": { password: "123", reports: [1] },
+            "Admin": { password: "admin", reports: [0, 1, 2, 3, 4, 5] },
+            "Ventas": { password: "ventas123", reports: [0] },
+            "Proyectos": { password: "Proy", reports: [2] }
         };
 
         let loggedInUser = null;
@@ -215,7 +214,10 @@ iframe {
             const allReports = [
                 { name: "Ventas", url: "https://app.powerbi.com/view?r=eyJrIjoiMzkyZmY4YmQtOWI2MS00NzIwLWExYjQtMDdkZjM3MGM2ZDAxIiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" },
                 { name: "Tickets Sistemas", url: "https://app.powerbi.com/view?r=eyJrIjoiOGI3ZWFkYzYtNzY2ZS00YTI0LTk1MzUtZDQwODgzOGM0MGI0IiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" },
-                { name: "Proyectos", url: "https://app.powerbi.com/view?r=eyJrIjoiZTk5ODI4OWUtNWJlMS00YjBmLTlkMmEtOTBlYWYyNjBjYmExIiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" }
+                { name: "Proyectos", url: "https://app.powerbi.com/view?r=eyJrIjoiZTk5ODI4OWUtNWJlMS00YjBmLTlkMmEtOTBlYWYyNjBjYmExIiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" },
+                { name: "", url:""},
+                { name: "", url:""},
+                { name: "", url:""}
             ];
             userReports.forEach(index => {
                 const report = allReports[index];
