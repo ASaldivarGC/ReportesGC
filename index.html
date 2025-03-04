@@ -6,111 +6,126 @@
     <title>Power BI Report Selector</title>
     <link rel="icon" href="Imagenes/logo.png" type="image/x-icon"> <!-- Icono de la ventana -->
     <style>
-        body {
-            background-color: #f0f0f0; /* fondo gris claro */
-            color: #333333; /* texto gris oscuro */
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            width: 100%;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 10px 20px;
-            box-sizing: border-box;
-            background-color: #ffffff;
-            border-bottom: 2px solid #ff9800; /* borde Naranja */
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        .logo {
-            height: 80px;
-        }
-        .title-container {
-    
+        html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+body {
+    background-color: #f0f0f0; /* fondo gris claro */
+    color: #333333; /* texto gris oscuro */
+    font-family: Arial, sans-serif;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-bottom: 2px solid #ff9800; /* borde Naranja */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 80px;
+}
+
+.title-container {
     width: 60%;
 }
 
-        h1 {
-            color: #ff9800; /* Título color naranja */
-            margin: 0;
-            
-        }
-        .container {
-            text-align: center;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        select {
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            border: 2px solid #ff9800; /* Borde Naranja */
-            border-radius: 5px;
-            width: 100%;
-            max-width: 600px; /* Limitar el ancho del menu desplegable */
-        }
-        #report-container {
-            width: 100%;
-            height: 85vh;
-            background-color: #ffffff; /* fondo blanco para los reportes */
-            border: 2px solid #ff9800; /* borde Naranja */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* No se pase el contenido del borde */
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .footer {
-            width: 100%;
-            padding: 10px 20px;
-            background-color: #333333; /* fondo gris oscuro */
-            color: #ffffff; /* texto blanco */
-            text-align: center;
-            border-top: 2px solid #ff9800; /* borde naranja */
-            box-sizing: border-box;
-        }
-        .login-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .login-container input {
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 10px;
-            border: 2px solid #ff9800; /* Borde Naranja */
-            border-radius: 5px;
-            width: 100%;
-            max-width: 300px;
-        }
-        .login-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ff9800;
-            color: #ffffff;
-            cursor: pointer;
-        }
-        .logout-button {
+h1 {
+    color: #ff9800; /* Título color naranja */
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 auto; /* Permite que el contenido ocupe el espacio disponible */
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 2px solid #ff9800; /* Borde Naranja */
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px; /* Limitar el ancho del menu desplegable */
+}
+
+#report-container {
+    width: 70%;
+    height: 85vh;
+    background-color: #ffffff; /* fondo blanco para los reportes */
+    border: 2px solid #ff9800; /* borde Naranja */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* No se pase el contenido del borde */
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.footer {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #333333; /* fondo gris oscuro */
+    color: #ffffff; /* texto blanco */
+    text-align: center;
+    border-top: 2px solid #ff9800; /* borde naranja */
+    box-sizing: border-box;
+    flex-shrink: 0; /* Evita que el footer se encoja */
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.login-container input {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 2px solid #ff9800; /* Borde Naranja */
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.login-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff9800;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.logout-button {
     position: absolute;
     right: 20px;
     padding: 10px 20px;
@@ -154,16 +169,16 @@
         <div id="report-container" style="display: none;"></div>
     </div>
     <div class="footer">
-        <p>2025 Grupo Consulte. Hecho por el Departamento de Sistemas. <a href="https://forms.office.com/pages/responsepage.aspx?id=k5qFsRk5vkusef0_ZisENyWZPsX_oa9JjBwbl01mOIlUQjVQOElJWjE2OVZERFFMWDZFOFhJVDAwRS4u&route=shorturl" target="_blank" style="color: #ff9800;">Reportar Problemas</a></p>
+        <p>2025 Grupo Consulte. Hecho por el Departamento de Sistemas. <a href="https://forms.office.com/pages/responsepage.aspx?id=k5qFsRk5vkusef0_ZisENyWZPsX_oa9JjBwbl01mOIlUQjVQOElJWjE2OVZERFFMWDZFOFhJVDAwRS4u&route=shorturl" target="_blank" style="color: #ff9800;">Reportar Problemas.</a> Pregunta o consulta: asaldivar@grupoconsulte.com.mx</p>
     </div>
 
     <script>
         const users = {
-            "Sistemas": { password: "123", reports: [1] },
-            "Proyectos": { password: "159753", reports: [0, 1, 2] },
-            "Ventas": { password: "ventas147", reports: [0] },
+            "Sistemas": { password: "123", reports: [1, 2] },
+            "Admin": { password: "admin", reports: [0, 1, 2] },
+            "Ventas": { password: "ventas", reports: [0] },
             "Marketing": { password: "marketing", reports: [0, 2] },
-            "Admin": { password: "Admin", reports: [0, 1, 2, 3, 4, 5] }
+            "Desarrollo": { password: "dev", reports: [1, 2] }
         };
 
         let loggedInUser = null;
@@ -200,10 +215,7 @@
             const allReports = [
                 { name: "Ventas", url: "https://app.powerbi.com/view?r=eyJrIjoiMzkyZmY4YmQtOWI2MS00NzIwLWExYjQtMDdkZjM3MGM2ZDAxIiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" },
                 { name: "Tickets Sistemas", url: "https://app.powerbi.com/view?r=eyJrIjoiOGI3ZWFkYzYtNzY2ZS00YTI0LTk1MzUtZDQwODgzOGM0MGI0IiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" },
-                { name: "Proyectos", url: "https://app.powerbi.com/view?r=eyJrIjoiZTk5ODI4OWUtNWJlMS00YjBmLTlkMmEtOTBlYWYyNjBjYmExIiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" },
-                { name: "", url:""},
-                { name: "", url:""},
-                { name: "", url:""}
+                { name: "Proyectos", url: "https://app.powerbi.com/view?r=eyJrIjoiZTk5ODI4OWUtNWJlMS00YjBmLTlkMmEtOTBlYWYyNjBjYmExIiwidCI6ImIxODU5YTkzLTM5MTktNGJiZS1hYzc5LWZkM2Y2NjJiMDQzNyJ9" }
             ];
             userReports.forEach(index => {
                 const report = allReports[index];
